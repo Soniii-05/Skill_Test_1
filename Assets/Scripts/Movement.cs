@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Movement : MonoBehaviour
 {
@@ -31,6 +32,12 @@ public class Movement : MonoBehaviour
         {
             isGrounded = true;
         }
+
+        if (collision.collider.CompareTag("DeathWall"))
+        {
+            SceneManager.LoadScene("GameOver");
+        }
+
     }
 
     private void OnCollisionExit2D(Collision2D collision)
