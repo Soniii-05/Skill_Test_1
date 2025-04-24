@@ -7,22 +7,25 @@ public class Movement : Character
     public float jumpForce;
     public bool isGrounded = false;
 
-    private Rigidbody2D rb;
+    private Rigidbody2D _rigidbody;
+    private Animator _animator;
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        _rigidbody = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
     }
 
     void Update()
     {
         float movementX = Input.GetAxis("Horizontal");
-        Vector3 movement = new Vector3(movementX, 0f);
+        Vector2 movement = new Vector2(movementX, 0f);
         transform.Translate(movement * speed * Time.deltaTime);
+        
 
         if (isGrounded && Input.GetButtonDown("Jump"))
         {
-            rb.AddForce(Vector2.up * jumpForce);
+            _rigidbody.AddForce(Vector2.up * jumpForce);
         }
     }
 
