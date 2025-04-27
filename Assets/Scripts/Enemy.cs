@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : Character
 {
@@ -31,6 +32,13 @@ public class Enemy : Character
             moveDirection = -moveDirection;
             spriteRenderer.flipX = !spriteRenderer.flipX;
         }
+
+        if (collision.collider.CompareTag("Player"))
+        {
+            Destroy(collision.gameObject);
+            SceneManager.LoadScene(3);
+        }
     }
 }
+
 
